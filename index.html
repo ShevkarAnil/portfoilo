@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CipherAI — Privacy-First Local AI Workspace</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- ✦ BIOMETRIC LOCK SCREEN OVERLAY -->
+  <!-- ========================================== -->
+  <div id="lock-screen" class="lock-screen-overlay hidden">
+    <div class="lock-card">
+      <div class="lock-logo-container">
+        <i data-lucide="shield-alert" class="lock-logo-icon"></i>
+      </div>
+      <h1 class="lock-title">CipherAI</h1>
+      <p class="lock-subtitle">Conversations are locally locked & encrypted</p>
+      
+      <div class="biometric-trigger" id="biometric-trigger-btn">
+        <div class="fingerprint-scanner">
+          <i data-lucide="fingerprint" class="fingerprint-icon"></i>
+        </div>
+        <div class="scanner-glowing-ring"></div>
+      </div>
+      
+      <p id="lock-status-message" class="lock-status">Tap scanner to authenticate identity</p>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- ✦ MAIN WORKSPACE CONTAINER -->
+  <!-- ========================================== -->
+  <div class="workspace-container">
+    
+    <!-- Collapsible Sidebar -->
+    <aside class="workspace-sidebar" id="sidebar">
+      <!-- Sidebar Header -->
+      <div class="sidebar-header">
+        <div class="brand-wrapper">
+          <div class="brand-logo">
+            <i data-lucide="lock" class="brand-logo-icon"></i>
+          </div>
+          <div class="brand-details">
+            <h2>CipherAI</h2>
+            <span class="secure-badge">
+              <span class="secure-dot"></span> Local AES-256
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="sidebar-action">
+        <button id="btn-new-chat" class="btn-new-chat">
+          <i data-lucide="plus-circle" class="btn-icon"></i>
+          <span>New Chat</span>
+        </button>
+      </div>
+
+      <!-- Sessions List -->
+      <nav class="sidebar-nav">
+        <div class="nav-title">ACTIVE CONVERSATIONS</div>
+        <div class="sessions-list" id="sessions-container">
+          <!-- Dynamically filled by app.js -->
+        </div>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="active-profile-card" id="settings-trigger">
+          <div class="provider-pill-container">
+            <span class="active-provider-dot" id="active-provider-indicator"></span>
+            <span class="active-provider-name" id="active-provider-label">OpenAI</span>
+          </div>
+          <div class="active-model-name" id="active-model-label">gpt-4o</div>
+          <button class="settings-gear-btn">
+            <i data-lucide="settings" class="settings-icon"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Chat View Container (Holds one or two side-by-side panes) -->
+    <div class="chat-view-container" id="chat-view-container">
+      
+      <!-- LEFT CHAT PANE -->
+      <main class="chat-pane active-pane focused-pane" id="chat-pane-left" data-pane="left">
+        <!-- Chat Header -->
+        <header class="chat-header">
+          <button class="mobile-toggle-btn" id="sidebar-toggle">
+            <i data-lucide="menu"></i>
+          </button>
+          
+          <div class="chat-meta">
+            <h3 id="current-chat-title-left">New Session</h3>
+            
+            <!-- Quick Session Dropdown Selector -->
+            <select id="select-session-left" class="pane-session-select hidden">
+              <!-- Populated dynamically -->
+            </select>
+            
+            <div class="chat-model-info">
+              <span class="model-status-indicator" id="header-status-indicator-left"></span>
+              <span class="model-status-text" id="header-status-label-left">Claude Sonnet 3.5</span>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <!-- Split Screen Trigger -->
+            <button id="btn-split-left" class="btn-secondary btn-split-toggle" title="Toggle Split Compare Mode">
+              <i data-lucide="columns"></i>
+              <span class="desktop-only">Split View</span>
+            </button>
+            <button id="btn-diagnostics" class="btn-secondary" title="Run Diagnostic Suite">
+              <i data-lucide="activity"></i>
+              <span class="desktop-only">Diagnostics</span>
+            </button>
+            <button id="btn-wipe-session-left" class="btn-danger-subtle btn-wipe-trigger" title="Wipe Chat History">
+              <i data-lucide="trash-2"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Chat History Viewport -->
+        <div class="chat-history" id="chat-history-container-left">
+          <!-- Welcoming Guide shown if chat is empty -->
+          <div class="welcome-screen" id="welcome-screen-left">
+            <div class="welcome-badge">
+              <i data-lucide="shield-check" class="shield-check-icon"></i>
+            </div>
+            <h2 class="welcome-title">Welcome to CipherAI</h2>
+            <p class="welcome-desc">A premium, zero-telemetry environment. All data resides solely in your browser's protected local database.</p>
+            
+            <div class="feature-grid">
+              <div class="feature-item">
+                <i data-lucide="shield" class="feature-icon"></i>
+                <h4>Secure Key Storage</h4>
+                <p>API keys are accessed only during queries, never uploaded.</p>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="database" class="feature-icon"></i>
+                <h4>Zero Cloud Sync</h4>
+                <p>Your logs, chats, and setups stay locally on this computer.</p>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="server" class="feature-icon"></i>
+                <h4>Multi-Hub Support</h4>
+                <p>Easily query OpenAI, Anthropic, or Local Ollama servers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Interactive Input panel -->
+        <footer class="chat-input-panel">
+          <div class="input-container-wrapper">
+            <textarea id="chat-textarea-left" placeholder="Send a secure message..." rows="1" maxlength="4000"></textarea>
+            
+            <div class="input-controls">
+              <span class="character-counter" id="char-counter-left">0 / 4000</span>
+              
+              <!-- Sync Send Toggle -->
+              <div class="sync-send-container hidden" id="sync-send-container-left">
+                <label class="sync-send-label" title="Mirror prompt and send to both AIs simultaneously">
+                  <input type="checkbox" id="checkbox-sync-send-left" class="custom-checkbox">
+                  <i data-lucide="git-pull-request" class="sync-icon"></i>
+                  <span>Sync Send</span>
+                </label>
+              </div>
+              
+              <div class="send-control-group">
+                <!-- Streaming/Stop button -->
+                <button id="btn-stop-left" class="btn-stop-streaming hidden" title="Cancel Stream">
+                  <i data-lucide="square" class="stop-icon"></i>
+                </button>
+                <button id="btn-send-left" class="btn-send-message" disabled>
+                  <i data-lucide="arrow-up" class="send-icon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </main>
+
+      <!-- RIGHT CHAT PANE (Hidden by default, shown in split mode) -->
+      <main class="chat-pane hidden" id="chat-pane-right" data-pane="right">
+        <!-- Chat Header -->
+        <header class="chat-header">
+          <div class="chat-meta">
+            <h3 id="current-chat-title-right">New Session</h3>
+            
+            <!-- Quick Session Dropdown Selector -->
+            <select id="select-session-right" class="pane-session-select hidden">
+              <!-- Populated dynamically -->
+            </select>
+            
+            <div class="chat-model-info">
+              <span class="model-status-indicator" id="header-status-indicator-right"></span>
+              <span class="model-status-text" id="header-status-label-right">Claude Sonnet 3.5</span>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <!-- Close Split Screen -->
+            <button id="btn-split-right" class="btn-secondary btn-split-toggle btn-split-active" title="Toggle Split Compare Mode">
+              <i data-lucide="x-circle"></i>
+              <span class="desktop-only">Close Split</span>
+            </button>
+            <button id="btn-wipe-session-right" class="btn-danger-subtle btn-wipe-trigger" title="Wipe Chat History">
+              <i data-lucide="trash-2"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Chat History Viewport -->
+        <div class="chat-history" id="chat-history-container-right">
+          <!-- Welcoming Guide shown if chat is empty -->
+          <div class="welcome-screen" id="welcome-screen-right">
+            <div class="welcome-badge">
+              <i data-lucide="shield-check" class="shield-check-icon"></i>
+            </div>
+            <h2 class="welcome-title">Welcome to CipherAI</h2>
+            <p class="welcome-desc">A premium, zero-telemetry environment. All data resides solely in your browser's protected local database.</p>
+            
+            <div class="feature-grid">
+              <div class="feature-item">
+                <i data-lucide="shield" class="feature-icon"></i>
+                <h4>Secure Key Storage</h4>
+                <p>API keys are accessed only during queries, never uploaded.</p>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="database" class="feature-icon"></i>
+                <h4>Zero Cloud Sync</h4>
+                <p>Your logs, chats, and setups stay locally on this computer.</p>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="server" class="feature-icon"></i>
+                <h4>Multi-Hub Support</h4>
+                <p>Easily query OpenAI, Anthropic, or Local Ollama servers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Interactive Input panel -->
+        <footer class="chat-input-panel">
+          <div class="input-container-wrapper">
+            <textarea id="chat-textarea-right" placeholder="Send a secure message..." rows="1" maxlength="4000"></textarea>
+            
+            <div class="input-controls">
+              <span class="character-counter" id="char-counter-right">0 / 4000</span>
+              
+              <div class="send-control-group">
+                <!-- Streaming/Stop button -->
+                <button id="btn-stop-right" class="btn-stop-streaming hidden" title="Cancel Stream">
+                  <i data-lucide="square" class="stop-icon"></i>
+                </button>
+                <button id="btn-send-right" class="btn-send-message" disabled>
+                  <i data-lucide="arrow-up" class="send-icon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- ========================================== -->
+  <!-- ✦ SECURE SETTINGS DIALOG (MODAL) -->
+  <!-- ========================================== -->
+  <div id="settings-modal" class="modal-overlay">
+    <div class="modal-card">
+      <header class="modal-header">
+        <div class="modal-header-title">
+          <i data-lucide="settings" class="modal-icon"></i>
+          <h3>Secure Configurations</h3>
+        </div>
+        <button class="modal-close-btn" id="settings-close">
+          <i data-lucide="x"></i>
+        </button>
+      </header>
+
+      <div class="modal-body">
+        <!-- AI Hub Panel -->
+        <section class="settings-section">
+          <h4>AI PROVIDER HUB</h4>
+          <div class="provider-grid">
+            <div class="provider-card active" data-provider="openai" id="prov-card-openai">
+              <span class="provider-dot openai"></span>
+              <h5>OpenAI</h5>
+            </div>
+            <div class="provider-card" data-provider="anthropic" id="prov-card-anthropic">
+              <span class="provider-dot anthropic"></span>
+              <h5>Anthropic</h5>
+            </div>
+            <div class="provider-card" data-provider="gemini" id="prov-card-gemini">
+              <span class="provider-dot gemini"></span>
+              <h5>Gemini</h5>
+            </div>
+            <div class="provider-card" data-provider="custom" id="prov-card-custom">
+              <span class="provider-dot ollama"></span>
+              <h5>Custom</h5>
+            </div>
+          </div>
+        </section>
+
+        <!-- Model selection -->
+        <section class="settings-section">
+          <label for="select-model" class="setting-label">ACTIVE MODEL</label>
+          <div class="select-wrapper">
+            <select id="select-model" class="custom-select">
+              <!-- Loaded by app.js -->
+            </select>
+          </div>
+        </section>
+
+        <!-- API Secrets -->
+        <section class="settings-section">
+          <h4>SECURE API KEYS</h4>
+          <div class="secret-field-group">
+            <div class="field-item">
+              <label for="input-openai-key">OpenAI API Key</label>
+              <div class="input-password-wrapper">
+                <input type="password" id="input-openai-key" placeholder="sk-..." class="custom-input">
+                <button class="btn-toggle-visibility" data-target="input-openai-key">
+                  <i data-lucide="eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="field-item">
+              <label for="input-anthropic-key">Anthropic API Key</label>
+              <div class="input-password-wrapper">
+                <input type="password" id="input-anthropic-key" placeholder="sk-ant-..." class="custom-input">
+                <button class="btn-toggle-visibility" data-target="input-anthropic-key">
+                  <i data-lucide="eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="field-item">
+              <label for="input-gemini-key">Google Gemini API Key</label>
+              <div class="input-password-wrapper">
+                <input type="password" id="input-gemini-key" placeholder="AIzaSy..." class="custom-input">
+                <button class="btn-toggle-visibility" data-target="input-gemini-key">
+                  <i data-lucide="eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="field-item hidden" id="custom-url-container">
+              <label for="input-custom-url">Custom Base URL (Ollama)</label>
+              <input type="text" id="input-custom-url" placeholder="http://localhost:11434/v1" class="custom-input">
+            </div>
+          </div>
+        </section>
+
+        <!-- Chat Parameters -->
+        <section class="settings-section">
+          <h4>CHAT BEHAVIOUR</h4>
+          <div class="behaviour-grid">
+            <div class="behaviour-row">
+              <div class="row-label">
+                <h5>Context Window Size</h5>
+                <p>Messages passed per AI query (<span id="context-size-value">20</span>)</p>
+              </div>
+              <input type="range" id="slider-context-size" min="4" max="60" value="20" class="custom-slider">
+            </div>
+            
+            <div class="behaviour-row">
+              <div class="row-label">
+                <h5>Streaming Responses</h5>
+                <p>Observe tokens arriving in real-time</p>
+              </div>
+              <label class="switch-toggle">
+                <input type="checkbox" id="toggle-streaming" checked>
+                <span class="slider-round"></span>
+              </label>
+            </div>
+
+            <div class="behaviour-row">
+              <div class="row-label">
+                <h5>Biometric Lock Screen</h5>
+                <p>Secure gate on app boot</p>
+              </div>
+              <label class="switch-toggle">
+                <input type="checkbox" id="toggle-biometrics">
+                <span class="slider-round"></span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- Danger Zone -->
+        <section class="settings-section danger-zone">
+          <h4>DANGER ZONE</h4>
+          <div class="danger-card">
+            <div class="danger-text">
+              <h5>Nuke All Data</h5>
+              <p>Wipes all sessions, history, and secret credentials permanently.</p>
+            </div>
+            <button id="btn-nuke-all" class="btn-danger">
+              <i data-lucide="flame" class="nuke-icon"></i>
+              Nuke
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <footer class="modal-footer">
+        <button id="settings-save-btn" class="btn-primary">Save Settings</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Diagnostic Results Overlay (Logs) -->
+  <div id="diagnostics-modal" class="modal-overlay">
+    <div class="modal-card diagnostic-card">
+      <header class="modal-header">
+        <div class="modal-header-title">
+          <i data-lucide="activity" class="modal-icon text-accent"></i>
+          <h3>Diagnostics Dashboard</h3>
+        </div>
+        <button class="modal-close-btn" id="diagnostics-close">
+          <i data-lucide="x"></i>
+        </button>
+      </header>
+      <div class="modal-body bg-terminal">
+        <div class="terminal-logs" id="terminal-logs-container">
+          <!-- Filled by diagnostic automation -->
+        </div>
+      </div>
+      <footer class="modal-footer bg-terminal-footer">
+        <button id="btn-rerun-diagnostics" class="btn-primary">
+          <i data-lucide="play" class="btn-icon"></i> Run Suite
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Application core engine logic -->
+  <script src="app.js"></script>
+  <script>
+    // Initialize Lucide Icons safely
+    safeCreateIcons();
+  </script>
+</body>
+</html>
