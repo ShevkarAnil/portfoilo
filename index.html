@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anil Ashok Shevkar | SAP ABAP Consultant</title>
+  <meta name="description" content="SAP ABAP Consultant specializing in ALV Reports, BDC, BAPIs, User Exits, BADIs, OData Services, CDS Views and S/4HANA. Based in Pune, India." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <span class="logo-bracket">&lt;</span>AS<span class="logo-bracket">/&gt;</span>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+      <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+      <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+      <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+      <li><a href="#education" class="nav-link" data-section="education">Education</a></li>
+      <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+    </ul>
+    <a href="Anil_Shevkar_SAP_ABAP_CONSULTANT_RESUME.pdf" download class="btn-resume" id="btn-download-resume">
+      <span>Download Resume</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="hero_bg.png" alt="" class="hero-bg-img" />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge reveal-up">
+        <span class="badge-dot"></span>
+        <span>Available for Opportunities</span>
+      </div>
+
+      <h1 class="hero-name reveal-up" id="hero-name">
+        <span class="name-line">Anil Ashok</span>
+        <span class="name-line accent-glow">Shevkar</span>
+      </h1>
+
+      <div class="hero-title reveal-up">
+        <span class="title-prefix">// </span>
+        <span class="typed-text" id="typed-text"></span>
+        <span class="cursor-blink">|</span>
+      </div>
+
+      <p class="hero-desc reveal-up">
+        SAP ABAP Developer crafting enterprise solutions with precision.<br/>
+        Specializing in <span class="highlight">ALV Reports</span>, <span class="highlight">OData Services</span>,
+        <span class="highlight">CDS Views</span> &amp; <span class="highlight">S/4HANA</span>.
+      </p>
+
+      <div class="hero-cta reveal-up">
+        <a href="#about" class="btn-primary" id="btn-explore">
+          <span>Explore My Work</span>
+          <div class="btn-glow"></div>
+        </a>
+        <a href="#contact" class="btn-secondary" id="btn-contact-hero">Get In Touch</a>
+      </div>
+
+      <div class="hero-stats reveal-up">
+        <div class="stat-item">
+          <span class="stat-num" data-target="10">0</span><span class="stat-num">+</span>
+          <span class="stat-label">ABAP Modules</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="5">0</span><span class="stat-num">+</span>
+          <span class="stat-label">Projects Built</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="2">0</span><span class="stat-num">+</span>
+          <span class="stat-label">SAP Platforms</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-avatar reveal-right">
+      <div class="avatar-ring ring-1"></div>
+      <div class="avatar-ring ring-2"></div>
+      <div class="avatar-ring ring-3"></div>
+      <div class="avatar-hex">
+        <img src="anil_photo.jpg" alt="Anil Ashok Shevkar" class="avatar-img" />
+      </div>
+      <div class="floating-badge badge-sap">SAP</div>
+      <div class="floating-badge badge-abap">ABAP</div>
+      <div class="floating-badge badge-s4">S/4HANA</div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section class="section about-section" id="about">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">// 01. about</span>
+        <h2 class="section-title">Who Am <span class="accent">I?</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal-left">
+          <p class="about-lead">
+            I'm a passionate <strong>SAP ABAP Developer</strong> based in Pune, India, dedicated to building robust enterprise SAP solutions that drive digital transformation.
+          </p>
+          <p>
+            With hands-on training and real-time project experience at E Learning Solution Pvt. Ltd., I specialize in custom report development, enhancements, Smart Forms, Module Pool programming, and data migration using BDC.
+          </p>
+          <p>
+            I hold a <strong>Bachelor of Engineering in Production Engineering</strong> from Amrutvahini College of Engineering, and I'm currently advancing in OData Services, SAP Gateway, CDS Views, RFC integrations, and S/4HANA — directly aligned with enterprise digital transformation initiatives.
+          </p>
+          <div class="about-info-grid">
+            <div class="info-item">
+              <span class="info-icon">📍</span>
+              <div>
+                <span class="info-label">Location</span>
+                <span class="info-value">Kharadi, Pune, India</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">📞</span>
+              <div>
+                <span class="info-label">Phone</span>
+                <span class="info-value">+91 8275609045</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">✉️</span>
+              <div>
+                <span class="info-label">Email</span>
+                <span class="info-value">anilshevkar1826@gmail.com</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">🌐</span>
+              <div>
+                <span class="info-label">Languages</span>
+                <span class="info-value">English, Hindi, Marathi</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">⚡</span>
+              <div>
+                <span class="info-label">Availability</span>
+                <span class="info-value" style="color: var(--accent-green);">Immediate</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">🏢</span>
+              <div>
+                <span class="info-label">Work Style</span>
+                <span class="info-value">Hybrid / Remote</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-cards reveal-right">
+          <div class="about-card card-glow">
+            <div class="card-icon">🎯</div>
+            <h3>Analytical Thinking</h3>
+            <p>Breaking down complex SAP problems into structured, efficient solutions through systematic debugging and troubleshooting.</p>
+          </div>
+          <div class="about-card card-glow">
+            <div class="card-icon">⚙️</div>
+            <h3>Performance Optimizer</h3>
+            <p>Applying ABAP best practices: efficient SELECT queries, secondary indexes, and code modularization to enhance runtime.</p>
+          </div>
+          <div class="about-card card-glow">
+            <div class="card-icon">🚀</div>
+            <h3>Continuous Learner</h3>
+            <p>Currently advancing in OData, CDS Views, S/4HANA, Fiori — always staying ahead of enterprise digital transformation.</p>
+          </div>
+          <div class="about-card card-glow">
+            <div class="card-icon">🤝</div>
+            <h3>Collaborative</h3>
+            <p>Comfortable in Agile team environments with strong communication across functional modules like MM, SD, and FICO.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS SECTION ===== -->
+  <section class="section skills-section" id="skills">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">// 02. skills</span>
+        <h2 class="section-title">Technical <span class="accent">Arsenal</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="skills-grid">
+
+        <div class="skill-category reveal-up" style="--delay: 0s">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">📊</div>
+            <h3>ABAP Development</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="tag tag-primary">Classical Reports</span>
+            <span class="tag tag-primary">Interactive Reports</span>
+            <span class="tag tag-primary">ALV Reports</span>
+            <span class="tag tag-primary">Simple ALV</span>
+            <span class="tag tag-primary">Interactive ALV</span>
+            <span class="tag tag-primary">Blocked ALV</span>
+            <span class="tag tag-primary">Hierarchical ALV</span>
+            <span class="tag tag-primary">ABAP Debugging</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal-up" style="--delay: 0.1s">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">🔧</div>
+            <h3>Enhancements</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="tag tag-secondary">User Exits</span>
+            <span class="tag tag-secondary">Customer Exits</span>
+            <span class="tag tag-secondary">BADIs</span>
+            <span class="tag tag-secondary">Enhancement Points</span>
+            <span class="tag tag-secondary">Implicit Enhancements</span>
+            <span class="tag tag-secondary">Explicit Enhancements</span>
+            <span class="tag tag-secondary">Enhancement Framework</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal-up" style="--delay: 0.2s">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">📋</div>
+            <h3>Forms &amp; UI</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="tag tag-accent">Smart Forms</span>
+            <span class="tag tag-accent">Driver Programs</span>
+            <span class="tag tag-accent">Module Pool</span>
+            <span class="tag tag-accent">Tabstrips</span>
+            <span class="tag tag-accent">Table Controls</span>
+            <span class="tag tag-accent">GUI Elements</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal-up" style="--delay: 0.3s">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">🗄️</div>
+            <h3>Data Dictionary</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="tag tag-green">Tables</span>
+            <span class="tag tag-green">Domains</span>
+            <span class="tag tag-green">Data Elements</span>
+            <span class="tag tag-green">Structures</span>
+            <span class="tag tag-green">Views</span>
+            <span class="tag tag-green">Search Helps</span>
+            <span class="tag tag-green">TMG</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal-up" style="--delay: 0.4s">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">🔄</div>
+            <h3>Integration &amp; Migration</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="tag tag-orange">BDC Session Method</span>
+            <span class="tag tag-orange">Call Transaction</span>
+            <span class="tag tag-orange">BAPIs</span>
+            <span class="tag tag-orange">RFC Function Modules</span>
+            <span class="tag tag-orange">IDoc Configuration</span>
+            <span class="tag tag-orange">Custom IDocs</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal-up" style="--delay: 0.5s">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">🌐</div>
+            <h3>OData &amp; S/4HANA</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="tag tag-purple">OData Services</span>
+            <span class="tag tag-purple">SAP Gateway</span>
+            <span class="tag tag-purple">SAP Fiori</span>
+            <span class="tag tag-purple">CDS Views</span>
+            <span class="tag tag-purple">S/4HANA</span>
+            <span class="tag tag-purple">SAP NetWeaver</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal-up" style="--delay: 0.6s">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">⚡</div>
+            <h3>Performance &amp; Platforms</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="tag tag-cyan">Efficient SELECT</span>
+            <span class="tag tag-cyan">Secondary Indexes</span>
+            <span class="tag tag-cyan">Code Modularization</span>
+            <span class="tag tag-cyan">SAP R/3</span>
+            <span class="tag tag-cyan">SAP ECC 7.04</span>
+            <span class="tag tag-cyan">Performance Tuning</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal-up" style="--delay: 0.7s">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">📦</div>
+            <h3>Functional Awareness</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="tag tag-primary">SAP MM</span>
+            <span class="tag tag-primary">SAP SD</span>
+            <span class="tag tag-primary">SAP FICO</span>
+            <span class="tag tag-secondary">Agile Development</span>
+            <span class="tag tag-secondary">Collaboration</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Skill Bars -->
+      <div class="proficiency-section reveal-up">
+        <h3 class="proficiency-title">Core Proficiency</h3>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>ALV Reports &amp; Classical ABAP</span><span class="skill-pct">90%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>Enhancements (BADIs, Exits)</span><span class="skill-pct">85%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>Smart Forms &amp; Module Pool</span><span class="skill-pct">85%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>BDC &amp; Data Migration</span><span class="skill-pct">80%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>OData Services &amp; SAP Gateway</span><span class="skill-pct">65%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span>CDS Views &amp; S/4HANA</span><span class="skill-pct">60%</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="60"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE SECTION ===== -->
+  <section class="section experience-section" id="experience">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">// 03. experience</span>
+        <h2 class="section-title">My <span class="accent">Journey</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal-left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-connector"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">SAP ABAP Developer</h3>
+                <span class="timeline-company">E Learning Solution Pvt. Ltd.</span>
+              </div>
+              <div class="timeline-meta">
+                <span class="timeline-badge">Training</span>
+                <span class="timeline-period">ECC 7.04 / S/4HANA | Pune</span>
+              </div>
+            </div>
+            <ul class="timeline-points">
+              <li>
+                <span class="point-dot"></span>
+                Designed and developed <strong>Classical &amp; ALV Reports</strong> (Simple, Interactive, Blocked, Hierarchical) for real-time MM and SD business scenarios with performance optimization.
+              </li>
+              <li>
+                <span class="point-dot"></span>
+                Built <strong>Smart Forms</strong> with customized layouts and driver programs for client order management, reducing manual document preparation effort.
+              </li>
+              <li>
+                <span class="point-dot"></span>
+                Developed <strong>Module Pool applications</strong> with Tabstrips, Table Controls, and GUI elements for interactive SAP user interfaces.
+              </li>
+              <li>
+                <span class="point-dot"></span>
+                Performed <strong>data migration</strong> using BDC Session Method and Call Transaction for high-volume batch data loads.
+              </li>
+              <li>
+                <span class="point-dot"></span>
+                Extended SAP standard functionality using <strong>User Exits, Customer Exits, BADIs</strong>, and Enhancement Points across MM, SD, and FICO scenarios.
+              </li>
+              <li>
+                <span class="point-dot"></span>
+                Applied ABAP performance optimization: efficient SELECT statements, secondary database indexes, and code modularization.
+              </li>
+              <li>
+                <span class="point-dot"></span>
+                Currently configuring <strong>IDoc extensions</strong>, custom IDoc types, and RFC function modules for SAP integration scenarios.
+              </li>
+              <li>
+                <span class="point-dot"></span>
+                Developing <strong>OData services</strong> via SAP Gateway, integrating with Fiori apps; practicing CDS Views for S/4HANA data modeling.
+              </li>
+            </ul>
+            <div class="timeline-tags">
+              <span>ABAP</span><span>ALV</span><span>Smart Forms</span><span>BDC</span>
+              <span>BADIs</span><span>OData</span><span>CDS Views</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION SECTION ===== -->
+  <section class="section education-section" id="education">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">// 04. education</span>
+        <h2 class="section-title">Academic <span class="accent">Background</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="education-grid">
+        <div class="edu-card reveal-up" style="--delay: 0s">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-content">
+            <div class="edu-year">2024</div>
+            <h3>Bachelor of Engineering</h3>
+            <span class="edu-spec">Production Engineering</span>
+            <p class="edu-institute">Amrutvahini College of Engineering, Pune University</p>
+          </div>
+          <div class="edu-glow"></div>
+        </div>
+
+        <div class="edu-card reveal-up" style="--delay: 0.2s">
+          <div class="edu-icon">📐</div>
+          <div class="edu-content">
+            <div class="edu-year">2020</div>
+            <h3>Diploma</h3>
+            <span class="edu-spec">Mechanical Engineering</span>
+            <p class="edu-institute">Amrutvahini Polytechnic College</p>
+          </div>
+          <div class="edu-glow"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="section contact-section" id="contact">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">// 05. contact</span>
+        <h2 class="section-title">Let's <span class="accent">Connect</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-left reveal-left">
+          <p class="contact-intro">
+            I'm actively looking for SAP ABAP opportunities. Whether you have a full-time role, a project collaboration, or just want to connect — my inbox is always open!
+          </p>
+
+          <div class="contact-items">
+            <a href="tel:+918275609045" class="contact-item" id="contact-phone">
+              <div class="contact-item-icon">📞</div>
+              <div>
+                <span class="contact-item-label">Phone</span>
+                <span class="contact-item-value">+91 8275609045</span>
+              </div>
+              <svg class="contact-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+
+            <a href="mailto:anilshevkar1826@gmail.com" class="contact-item" id="contact-email">
+              <div class="contact-item-icon">✉️</div>
+              <div>
+                <span class="contact-item-label">Email</span>
+                <span class="contact-item-value">anilshevkar1826@gmail.com</span>
+              </div>
+              <svg class="contact-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+
+            <a href="https://linkedin.com" target="_blank" class="contact-item" id="contact-linkedin">
+              <div class="contact-item-icon">💼</div>
+              <div>
+                <span class="contact-item-label">LinkedIn</span>
+                <span class="contact-item-value">View Profile</span>
+              </div>
+              <svg class="contact-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+
+            <div class="contact-item" id="contact-location">
+              <div class="contact-item-icon">📍</div>
+              <div>
+                <span class="contact-item-label">Location</span>
+                <span class="contact-item-value">Kharadi, Pune, Maharashtra</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-right reveal-right">
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="john@company.com" required />
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="SAP ABAP Opportunity" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="I'd like to discuss an opportunity with you..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit" id="btn-submit">
+              <span>Send Message</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+            <div class="form-success" id="form-success">
+              ✅ Message sent! I'll get back to you soon.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="logo-bracket">&lt;</span>AS<span class="logo-bracket">/&gt;</span>
+      </div>
+      <p class="footer-text">
+        Designed &amp; Built by <strong>Anil Ashok Shevkar</strong>
+      </p>
+      <p class="footer-sub">SAP ABAP Consultant | Pune, India | 2026</p>
+      <div class="footer-decl">
+        <em>"I hereby declare that the information provided is true and correct to the best of my knowledge."</em>
+      </div>
+    </div>
+    <div class="footer-glow"></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
